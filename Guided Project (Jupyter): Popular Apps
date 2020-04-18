@@ -1,0 +1,551 @@
+from csv import reader
+
+opened_file = open('googleplaystore.csv', encoding="utf8")
+read_file = reader(opened_file)
+android = list(read_file)
+android_header = android[0]
+android = android[1:]
+
+open_file = open('AppleStore.csv', encoding="utf8")
+read_file = reader(open_file)
+ios = list(read_file)
+ios_header = ios[0]
+ios = ios[1:]
+from csv import reader
+​
+opened_file = open('googleplaystore.csv', encoding="utf8")
+read_file = reader(opened_file)
+android = list(read_file)
+android_header = android[0]
+android = android[1:]
+​
+open_file = open('AppleStore.csv', encoding="utf8")
+read_file = reader(open_file)
+ios = list(read_file)
+ios_header = ios[0]
+ios = ios[1:]
+def explore_data(dataset, start, end, rows_and_columns=False):
+    dataset_slice = dataset[start:end]    
+    for row in dataset_slice:
+        print(row)
+        print('\n')
+        
+    if rows_and_columns:
+        print('Number of rows:', len(dataset))
+        print('Number of columns:', len(dataset[0]))
+​
+print(android_header)
+print('\n')
+explore_data(android, 0, 3, True)
+['App', 'Category', 'Rating', 'Reviews', 'Size', 'Installs', 'Type', 'Price', 'Content Rating', 'Genres', 'Last Updated', 'Current Ver', 'Android Ver']
+
+
+['Photo Editor & Candy Camera & Grid & ScrapBook', 'ART_AND_DESIGN', '4.1', '159', '19M', '10,000+', 'Free', '0', 'Everyone', 'Art & Design', 'January 7, 2018', '1.0.0', '4.0.3 and up']
+
+
+['Coloring book moana', 'ART_AND_DESIGN', '3.9', '967', '14M', '500,000+', 'Free', '0', 'Everyone', 'Art & Design;Pretend Play', 'January 15, 2018', '2.0.0', '4.0.3 and up']
+
+
+['U Launcher Lite – FREE Live Cool Themes, Hide Apps', 'ART_AND_DESIGN', '4.7', '87510', '8.7M', '5,000,000+', 'Free', '0', 'Everyone', 'Art & Design', 'August 1, 2018', '1.2.4', '4.0.3 and up']
+
+
+Number of rows: 10841
+Number of columns: 13
+print(ios_header)
+print('\n')
+explore_data(ios, 0, 3, True)
+['id', 'track_name', 'size_bytes', 'currency', 'price', 'rating_count_tot', 'rating_count_ver', 'user_rating', 'user_rating_ver', 'ver', 'cont_rating', 'prime_genre', 'sup_devices.num', 'ipadSc_urls.num', 'lang.num', 'vpp_lic']
+
+
+['284882215', 'Facebook', '389879808', 'USD', '0.0', '2974676', '212', '3.5', '3.5', '95.0', '4+', 'Social Networking', '37', '1', '29', '1']
+
+
+['389801252', 'Instagram', '113954816', 'USD', '0.0', '2161558', '1289', '4.5', '4.0', '10.23', '12+', 'Photo & Video', '37', '0', '29', '1']
+
+
+['529479190', 'Clash of Clans', '116476928', 'USD', '0.0', '2130805', '579', '4.5', '4.5', '9.24.12', '9+', 'Games', '38', '5', '18', '1']
+
+
+Number of rows: 7197
+Number of columns: 16
+print(android[10472]) 
+print('\n')
+print(android_header) 
+print('\n')
+print(android[0]) 
+['Life Made WI-Fi Touchscreen Photo Frame', '1.9', '19', '3.0M', '1,000+', 'Free', '0', 'Everyone', '', 'February 11, 2018', '1.0.19', '4.0 and up']
+
+
+['App', 'Category', 'Rating', 'Reviews', 'Size', 'Installs', 'Type', 'Price', 'Content Rating', 'Genres', 'Last Updated', 'Current Ver', 'Android Ver']
+
+
+['Photo Editor & Candy Camera & Grid & ScrapBook', 'ART_AND_DESIGN', '4.1', '159', '19M', '10,000+', 'Free', '0', 'Everyone', 'Art & Design', 'January 7, 2018', '1.0.0', '4.0.3 and up']
+print(len(android))
+del android[10472] 
+print(len(android))
+10841
+10840
+for app in android:
+    name = app[0]
+    if name == 'Instagram':
+        print(app)
+['Instagram', 'SOCIAL', '4.5', '66577313', 'Varies with device', '1,000,000,000+', 'Free', '0', 'Teen', 'Social', 'July 31, 2018', 'Varies with device', 'Varies with device']
+['Instagram', 'SOCIAL', '4.5', '66577446', 'Varies with device', '1,000,000,000+', 'Free', '0', 'Teen', 'Social', 'July 31, 2018', 'Varies with device', 'Varies with device']
+['Instagram', 'SOCIAL', '4.5', '66577313', 'Varies with device', '1,000,000,000+', 'Free', '0', 'Teen', 'Social', 'July 31, 2018', 'Varies with device', 'Varies with device']
+['Instagram', 'SOCIAL', '4.5', '66509917', 'Varies with device', '1,000,000,000+', 'Free', '0', 'Teen', 'Social', 'July 31, 2018', 'Varies with device', 'Varies with device']
+duplicate_apps = []
+unique_apps = []
+​
+for app in android:
+    name = app[0]
+    if name in unique_apps:
+        duplicate_apps.append(name)
+    else:
+        unique_apps.append(name)
+    
+print('Number of duplicate apps:', len(duplicate_apps))
+print('\n')
+print('Examples of duplicate apps:', duplicate_apps[:15])
+Number of duplicate apps: 1181
+
+
+Examples of duplicate apps: ['Quick PDF Scanner + OCR FREE', 'Box', 'Google My Business', 'ZOOM Cloud Meetings', 'join.me - Simple Meetings', 'Box', 'Zenefits', 'Google Ads', 'Google My Business', 'Slack', 'FreshBooks Classic', 'Insightly CRM', 'QuickBooks Accounting: Invoicing & Expenses', 'HipChat - Chat Built for Teams', 'Xero Accounting Software']
+reviews_max = {}
+​
+for app in android:
+    name = app[0]
+    n_reviews = float(app[3])
+    
+    if name in reviews_max and reviews_max[name] < n_reviews:
+        reviews_max[name] = n_reviews
+        
+    elif name not in reviews_max:
+        reviews_max[name] = n_reviews
+print('Expected length:', len(android) - 1181)
+print('Actual length:', len(reviews_max))
+Expected length: 9659
+Actual length: 9659
+)
+android_clean = []
+already_added = []
+​
+for app in android:
+    name = app[0]
+    n_reviews = float(app[3])
+    
+    if (reviews_max[name] == n_reviews) and (name not in already_added):
+        android_clean.append(app)
+        already_added.append(name)
+explore_data(android_clean, 0, 3, True)
+['Photo Editor & Candy Camera & Grid & ScrapBook', 'ART_AND_DESIGN', '4.1', '159', '19M', '10,000+', 'Free', '0', 'Everyone', 'Art & Design', 'January 7, 2018', '1.0.0', '4.0.3 and up']
+
+
+['U Launcher Lite – FREE Live Cool Themes, Hide Apps', 'ART_AND_DESIGN', '4.7', '87510', '8.7M', '5,000,000+', 'Free', '0', 'Everyone', 'Art & Design', 'August 1, 2018', '1.2.4', '4.0.3 and up']
+
+
+['Sketch - Draw & Paint', 'ART_AND_DESIGN', '4.5', '215644', '25M', '50,000,000+', 'Free', '0', 'Teen', 'Art & Design', 'June 8, 2018', 'Varies with device', '4.2 and up']
+
+
+Number of rows: 9659
+Number of columns: 13
+print(ios[813][1])
+print(ios[6731][1])
+​
+print(android_clean[4412][0])
+print(android_clean[7940][0])
+爱奇艺PPS -《欢乐颂2》电视剧热播
+【脱出ゲーム】絶対に最後までプレイしないで 〜謎解き＆ブロックパズル〜
+中国語 AQリスニング
+لعبة تقدر تربح DZ
+def is_english(string):
+    
+    for character in string:
+        if ord(character) > 127:
+            return False
+    
+    return True
+​
+print(is_english('Instagram'))
+print(is_english('爱奇艺PPS -《欢乐颂2》电视剧热播'))
+True
+False
+print(is_english('Docs To Go™ Free Office Suite'))
+print(is_english('Instachat 😜'))
+​
+print(ord('™'))
+print(ord('😜'))
+False
+False
+8482
+128540
+def is_english(string):
+    non_ascii = 0
+    
+    for character in string:
+        if ord(character) > 127:
+            non_ascii += 1
+    
+    if non_ascii > 3:
+        return False
+    else:
+        return True
+​
+print(is_english('Docs To Go™ Free Office Suite'))
+print(is_english('Instachat 😜'))
+True
+True
+android_english = []
+ios_english = []
+​
+for app in android_clean:
+    name = app[0]
+    if is_english(name):
+        android_english.append(app)
+        
+for app in ios:
+    name = app[1]
+    if is_english(name):
+        ios_english.append(app)
+        
+explore_data(android_english, 0, 3, True)
+print('\n')
+explore_data(ios_english, 0, 3, True)
+['Photo Editor & Candy Camera & Grid & ScrapBook', 'ART_AND_DESIGN', '4.1', '159', '19M', '10,000+', 'Free', '0', 'Everyone', 'Art & Design', 'January 7, 2018', '1.0.0', '4.0.3 and up']
+
+
+['U Launcher Lite – FREE Live Cool Themes, Hide Apps', 'ART_AND_DESIGN', '4.7', '87510', '8.7M', '5,000,000+', 'Free', '0', 'Everyone', 'Art & Design', 'August 1, 2018', '1.2.4', '4.0.3 and up']
+
+
+['Sketch - Draw & Paint', 'ART_AND_DESIGN', '4.5', '215644', '25M', '50,000,000+', 'Free', '0', 'Teen', 'Art & Design', 'June 8, 2018', 'Varies with device', '4.2 and up']
+
+
+Number of rows: 9614
+Number of columns: 13
+
+
+['284882215', 'Facebook', '389879808', 'USD', '0.0', '2974676', '212', '3.5', '3.5', '95.0', '4+', 'Social Networking', '37', '1', '29', '1']
+
+
+['389801252', 'Instagram', '113954816', 'USD', '0.0', '2161558', '1289', '4.5', '4.0', '10.23', '12+', 'Photo & Video', '37', '0', '29', '1']
+
+
+['529479190', 'Clash of Clans', '116476928', 'USD', '0.0', '2130805', '579', '4.5', '4.5', '9.24.12', '9+', 'Games', '38', '5', '18', '1']
+
+
+Number of rows: 6183
+Number of columns: 16
+android_final = []
+ios_final = []
+​
+for app in android_english:
+    price = app[7]
+    if price == '0':
+        android_final.append(app)
+        
+for app in ios_english:
+    price = app[4]
+    if price == '0.0':
+        ios_final.append(app)
+        
+print(len(android_final))
+print(len(ios_final))
+8864
+3222
+Most Common Apps by Genre
+
+android_final, -4
+def freq_table(dataset, index):
+    genres_dict = {}
+    total = 0
+    for row in dataset:
+        total += 1
+        genre = row[index]
+        if genre not in genres_dict:
+            genres_dict[genre] = 1 
+        else:
+            genres_dict[genre]= +1
+    
+    table_percentages = {}
+    for key in genres_dict:
+        percentage = (genres_dict[key] / total) * 100
+        table_percentages[key] = percentage
+    
+    return table_percentages
+            
+def display_table(dataset, index):
+    table = freq_table(dataset, index)
+    table_display = []
+    for key in table:
+        key_val_as_tuple = (table[key], key)
+        table_display.append(key_val_as_tuple)
+​
+    table_sorted = sorted(table_display, reverse = True)
+    for entry in table_sorted:
+        print(entry[1], ':', entry[0])
+        
+display_table(ios_final, -5)
+display_table(android_final, 1)
+display_table(android_final, -4)
+Weather : 0.031036623215394164
+Utilities : 0.031036623215394164
+Travel : 0.031036623215394164
+Sports : 0.031036623215394164
+Social Networking : 0.031036623215394164
+Shopping : 0.031036623215394164
+Reference : 0.031036623215394164
+Productivity : 0.031036623215394164
+Photo & Video : 0.031036623215394164
+News : 0.031036623215394164
+Navigation : 0.031036623215394164
+Music : 0.031036623215394164
+Medical : 0.031036623215394164
+Lifestyle : 0.031036623215394164
+Health & Fitness : 0.031036623215394164
+Games : 0.031036623215394164
+Food & Drink : 0.031036623215394164
+Finance : 0.031036623215394164
+Entertainment : 0.031036623215394164
+Education : 0.031036623215394164
+Catalogs : 0.031036623215394164
+Business : 0.031036623215394164
+Book : 0.031036623215394164
+WEATHER : 0.01128158844765343
+VIDEO_PLAYERS : 0.01128158844765343
+TRAVEL_AND_LOCAL : 0.01128158844765343
+TOOLS : 0.01128158844765343
+SPORTS : 0.01128158844765343
+SOCIAL : 0.01128158844765343
+SHOPPING : 0.01128158844765343
+PRODUCTIVITY : 0.01128158844765343
+PHOTOGRAPHY : 0.01128158844765343
+PERSONALIZATION : 0.01128158844765343
+PARENTING : 0.01128158844765343
+NEWS_AND_MAGAZINES : 0.01128158844765343
+MEDICAL : 0.01128158844765343
+MAPS_AND_NAVIGATION : 0.01128158844765343
+LIFESTYLE : 0.01128158844765343
+LIBRARIES_AND_DEMO : 0.01128158844765343
+HOUSE_AND_HOME : 0.01128158844765343
+HEALTH_AND_FITNESS : 0.01128158844765343
+GAME : 0.01128158844765343
+FOOD_AND_DRINK : 0.01128158844765343
+FINANCE : 0.01128158844765343
+FAMILY : 0.01128158844765343
+EVENTS : 0.01128158844765343
+ENTERTAINMENT : 0.01128158844765343
+EDUCATION : 0.01128158844765343
+DATING : 0.01128158844765343
+COMMUNICATION : 0.01128158844765343
+COMICS : 0.01128158844765343
+BUSINESS : 0.01128158844765343
+BOOKS_AND_REFERENCE : 0.01128158844765343
+BEAUTY : 0.01128158844765343
+AUTO_AND_VEHICLES : 0.01128158844765343
+ART_AND_DESIGN : 0.01128158844765343
+Word : 0.01128158844765343
+Weather : 0.01128158844765343
+Video Players & Editors;Music & Video : 0.01128158844765343
+Video Players & Editors;Creativity : 0.01128158844765343
+Video Players & Editors : 0.01128158844765343
+Trivia;Education : 0.01128158844765343
+Trivia : 0.01128158844765343
+Travel & Local;Action & Adventure : 0.01128158844765343
+Travel & Local : 0.01128158844765343
+Tools;Education : 0.01128158844765343
+Tools : 0.01128158844765343
+Strategy;Education : 0.01128158844765343
+Strategy;Creativity : 0.01128158844765343
+Strategy;Action & Adventure : 0.01128158844765343
+Strategy : 0.01128158844765343
+Sports;Action & Adventure : 0.01128158844765343
+Sports : 0.01128158844765343
+Social : 0.01128158844765343
+Simulation;Pretend Play : 0.01128158844765343
+Simulation;Education : 0.01128158844765343
+Simulation;Action & Adventure : 0.01128158844765343
+Simulation : 0.01128158844765343
+Shopping : 0.01128158844765343
+Role Playing;Pretend Play : 0.01128158844765343
+Role Playing;Brain Games : 0.01128158844765343
+Role Playing;Action & Adventure : 0.01128158844765343
+Role Playing : 0.01128158844765343
+Racing;Pretend Play : 0.01128158844765343
+Racing;Action & Adventure : 0.01128158844765343
+Racing : 0.01128158844765343
+Puzzle;Education : 0.01128158844765343
+Puzzle;Creativity : 0.01128158844765343
+Puzzle;Brain Games : 0.01128158844765343
+Puzzle;Action & Adventure : 0.01128158844765343
+Puzzle : 0.01128158844765343
+Productivity : 0.01128158844765343
+Photography : 0.01128158844765343
+Personalization : 0.01128158844765343
+Parenting;Music & Video : 0.01128158844765343
+Parenting;Education : 0.01128158844765343
+Parenting;Brain Games : 0.01128158844765343
+Parenting : 0.01128158844765343
+News & Magazines : 0.01128158844765343
+Music;Music & Video : 0.01128158844765343
+Music & Audio;Music & Video : 0.01128158844765343
+Music : 0.01128158844765343
+Medical : 0.01128158844765343
+Maps & Navigation : 0.01128158844765343
+Lifestyle;Pretend Play : 0.01128158844765343
+Lifestyle;Education : 0.01128158844765343
+Lifestyle : 0.01128158844765343
+Libraries & Demo : 0.01128158844765343
+House & Home : 0.01128158844765343
+Health & Fitness;Education : 0.01128158844765343
+Health & Fitness;Action & Adventure : 0.01128158844765343
+Health & Fitness : 0.01128158844765343
+Food & Drink : 0.01128158844765343
+Finance : 0.01128158844765343
+Events : 0.01128158844765343
+Entertainment;Pretend Play : 0.01128158844765343
+Entertainment;Music & Video : 0.01128158844765343
+Entertainment;Education : 0.01128158844765343
+Entertainment;Creativity : 0.01128158844765343
+Entertainment;Brain Games : 0.01128158844765343
+Entertainment;Action & Adventure : 0.01128158844765343
+Entertainment : 0.01128158844765343
+Educational;Pretend Play : 0.01128158844765343
+Educational;Education : 0.01128158844765343
+Educational;Creativity : 0.01128158844765343
+Educational;Brain Games : 0.01128158844765343
+Educational;Action & Adventure : 0.01128158844765343
+Educational : 0.01128158844765343
+Education;Pretend Play : 0.01128158844765343
+Education;Music & Video : 0.01128158844765343
+Education;Education : 0.01128158844765343
+Education;Creativity : 0.01128158844765343
+Education;Brain Games : 0.01128158844765343
+Education;Action & Adventure : 0.01128158844765343
+Education : 0.01128158844765343
+Dating : 0.01128158844765343
+Communication;Creativity : 0.01128158844765343
+Communication : 0.01128158844765343
+Comics;Creativity : 0.01128158844765343
+Comics : 0.01128158844765343
+Casual;Pretend Play : 0.01128158844765343
+Casual;Music & Video : 0.01128158844765343
+Casual;Education : 0.01128158844765343
+Casual;Creativity : 0.01128158844765343
+Casual;Brain Games : 0.01128158844765343
+Casual;Action & Adventure : 0.01128158844765343
+Casual : 0.01128158844765343
+Casino : 0.01128158844765343
+Card;Action & Adventure : 0.01128158844765343
+Card : 0.01128158844765343
+Business : 0.01128158844765343
+Books & Reference;Education : 0.01128158844765343
+Books & Reference : 0.01128158844765343
+Board;Brain Games : 0.01128158844765343
+Board;Action & Adventure : 0.01128158844765343
+Board : 0.01128158844765343
+Beauty : 0.01128158844765343
+Auto & Vehicles : 0.01128158844765343
+Art & Design;Pretend Play : 0.01128158844765343
+Art & Design;Creativity : 0.01128158844765343
+Art & Design;Action & Adventure : 0.01128158844765343
+Art & Design : 0.01128158844765343
+Arcade;Pretend Play : 0.01128158844765343
+Arcade;Action & Adventure : 0.01128158844765343
+Arcade : 0.01128158844765343
+Adventure;Education : 0.01128158844765343
+Adventure;Action & Adventure : 0.01128158844765343
+Adventure : 0.01128158844765343
+Action;Action & Adventure : 0.01128158844765343
+Action : 0.01128158844765343
+genres_ios
+genres_ios = []
+​
+for genre in freq_table(ios_final, -5):
+    genres_ios.append(genre)
+    
+print(genres_ios)
+['Social Networking', 'Photo & Video', 'Games', 'Music', 'Reference', 'Health & Fitness', 'Weather', 'Utilities', 'Travel', 'Shopping', 'News', 'Navigation', 'Lifestyle', 'Entertainment', 'Food & Drink', 'Sports', 'Book', 'Finance', 'Education', 'Productivity', 'Business', 'Catalogs', 'Medical']
+​
+for genre in genres_ios:
+    total = 0
+    len_genre = 0
+    for row in ios_final: 
+        genre_app = row[-5]
+        if genre_app == genre:
+            num_ratings = float(row[5])
+            total += num_ratings
+            len_genre += 1
+    avg_num = total / len_genre
+    print(f'{genre}:{avg_num}')
+Social Networking:71548.34905660378
+Photo & Video:28441.54375
+Games:22788.6696905016
+Music:57326.530303030304
+Reference:74942.11111111111
+Health & Fitness:23298.015384615384
+Weather:52279.892857142855
+Utilities:18684.456790123455
+Travel:28243.8
+Shopping:26919.690476190477
+News:21248.023255813954
+Navigation:86090.33333333333
+Lifestyle:16485.764705882353
+Entertainment:14029.830708661417
+Food & Drink:33333.92307692308
+Sports:23008.898550724636
+Book:39758.5
+Finance:31467.944444444445
+Education:7003.983050847458
+Productivity:21028.410714285714
+Business:7491.117647058823
+Catalogs:4004.0
+Medical:612.0
+r
+genres_android = freq_table(android_final, 1)
+​
+for category in genres_android:
+    total = 0
+    len_category = 0
+    for row in android_final:
+        category_app = row[1]
+        if category_app == category:
+            num_installs = float(row[5].replace("+",'').replace(",",''))
+            total += num_installs
+            len_category += 1
+    avg_nums = total / len_category  
+    print(f'{category}:{avg_nums}')
+            
+            
+    
+ART_AND_DESIGN:1986335.0877192982
+AUTO_AND_VEHICLES:647317.8170731707
+BEAUTY:513151.88679245283
+BOOKS_AND_REFERENCE:8767811.894736841
+BUSINESS:1712290.1474201474
+COMICS:817657.2727272727
+COMMUNICATION:38456119.167247385
+DATING:854028.8303030303
+EDUCATION:1833495.145631068
+ENTERTAINMENT:11640705.88235294
+EVENTS:253542.22222222222
+FINANCE:1387692.475609756
+FOOD_AND_DRINK:1924897.7363636363
+HEALTH_AND_FITNESS:4188821.9853479853
+HOUSE_AND_HOME:1331540.5616438356
+LIBRARIES_AND_DEMO:638503.734939759
+LIFESTYLE:1437816.2687861272
+GAME:15588015.603248259
+FAMILY:3695641.8198090694
+MEDICAL:120550.61980830671
+SOCIAL:23253652.127118643
+SHOPPING:7036877.311557789
+PHOTOGRAPHY:17840110.40229885
+SPORTS:3638640.1428571427
+TRAVEL_AND_LOCAL:13984077.710144928
+TOOLS:10801391.298666667
+PERSONALIZATION:5201482.6122448975
+PRODUCTIVITY:16787331.344927534
+PARENTING:542603.6206896552
+WEATHER:5074486.197183099
+VIDEO_PLAYERS:24727872.452830188
+NEWS_AND_MAGAZINES:9549178.467741935
+MAPS_AND_NAVIGATION:4056941.7741935486
