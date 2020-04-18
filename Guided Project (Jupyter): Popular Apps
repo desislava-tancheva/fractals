@@ -1,3 +1,5 @@
+source: https://app.dataquest.io/m/350/guided-project%3A-profitable-app-profiles-for-the-app-store-and-google-play-markets/14/next-steps
+
 from csv import reader
 
 opened_file = open('googleplaystore.csv', encoding="utf8")
